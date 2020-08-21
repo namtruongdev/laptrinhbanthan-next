@@ -1,0 +1,55 @@
+---
+date: "2020-01-27"
+title: Git log, git show, git diff và cách sử dụng
+thumbnail: git-log-git-show-va-git-diff
+excerpt: Git log là gì?, Git show là gì?, Git diff là gì?, sử dụng chúng thế nào? Sê ri thành thạo Git
+permalink: hoc-lap-trinh/git-log-git-show-git-diff-va-cach-su-dung
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+## Git log là gì?
+
+**Git log** thường được dùng để xem lịch sử và thông tin của các commit
+
+```bash
+$ git log
+```
+
+## Thực hiện git log
+
+Lệnh **git log** sử dụng để xem lại lịch sử của các **commit** và thông tin của mỗi commit như tên tác giả, ngày commit và mô tả của commit.
+
+```bash
+$ git log
+commit 50ef5484c2b98d06600f75b819105dc9b4cefa6b (HEAD -> source)
+Author: namtruongdev <namtruongdev@gmail.com>
+Date: Sun Jan 26 21:53:28 2020 -0500
+
+    update
+
+```
+
+## Git show là gì?
+
+**Git show** thường được sử dụng để xem nội dung của file đã commit
+
+```bash
+$ git show 50ef5484c2b98d06600f75b819105dc9b4cefa6b
+```
+
+Lệnh **git show** + **ID của commit** dùng để xem nội dung file trước khi chỉnh sửa và sau khi chỉnh sửa của các file đã được commit.
+
+## Git diff là gì?
+
+**Git diff** thường được sử dụng để xem nội dung của file đã chỉnh sửa nhưng chưa commit.
+
+```bash
+$ git diff
+```
+
+Lệnh **git diff** dùng để xem nội dung trước và sau khi chỉnh sửa của các file nhưng chưa được commit.
+
+Chúc mọi người học vui vẻ nhé.

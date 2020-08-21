@@ -1,46 +1,42 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-import React from "react"
+import React, { createContext } from "react"
+import loadable from "@loadable/component"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { CssBaseline } from "@material-ui/core"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { useDarkMode } from "../hooks"
 
-import Header from "./header"
-import "./layout.css"
+const Footer = loadable(() => import("./Footer"))
+const BackTop = loadable(() => import("./BackTop"))
+
+export const ThemeContext = createContext(null)
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  const [theme, toggleTheme, componentMounted] = useDarkMode()
+  const themeMode = theme === "light" ? "light" : "dark"
+  const textColor =
+    theme === "light" ? "rgba(0,0,0,0.87)" : `rgba(255, 255, 255, 0.87)`
+  if (!componentMounted) {
+    return <div />
+  }
+
+  const themeUI = createMuiTheme({
+    palette: {
+      type: themeMode,
+      text: {
+        primary: textColor,
+      },
+    },
+  })
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+    <ThemeProvider theme={themeUI}>
+      <CssBaseline />
+
+      <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+
+      <Footer theme={theme}></Footer>
+      <BackTop theme={theme} toggleTheme={toggleTheme} />
+    </ThemeProvider>
   )
 }
 

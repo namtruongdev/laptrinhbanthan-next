@@ -1,0 +1,75 @@
+---
+date: "2020-02-03"
+title: "Branching, Merging và cách sử dụng"
+thumbnail: branching-va-merging
+excerpt: Branching là gì? Merging là gì? Cách sử dụng chúng ra sao? Sê ri thành thạo Git
+permalink: hoc-lap-trinh/branching-mergin-va-cach-su-dung
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+import Alert from "@material-ui/lab/Alert"
+
+## Branching là gì?
+
+Trong thực tế, khi bạn đang làm việc thì bỗng nhiên sếp gọi vào báo project có lỗi và cần phải hotfix nó ngay.
+
+Bạn có một tính năng mới và muốn test nó thật cẩn thận rồi mới hợp nhất nó vào trong project chính.
+
+Bạn muốn làm một cái gì đó mà không muốn liên quan đến nhánh chính (master).
+
+Nói chung branching là một nhánh tách biệt không liên quan gì đến nhánh gốc, chúng ta có thể thoải mái sửa xóa mà không sợ ảnh hưởng tớ nhánh chính
+
+## Thực hiện Branching
+
+Ví dụ: Blog của bạn cần thêm tính năng bình luận dưới bài viết. Bạn sẽ tạo một nhánh mới tên là **feature/comments**.
+
+```bash
+$ git checkout -b feature/comments
+```
+
+Lệnh trên sẽ tạo nhánh mới và chuyển sang nhánh đó để làm việc luôn.
+
+Gõ lệnh **git branch** để xem các nhánh hiện có vá nhánh đang làm việc. Nhánh đang làm việc sẽ có dấu **\*** đằng trước:
+
+```bash
+$ git branch
+* master
+feature/comments
+```
+
+Để chuyển lại nhánh **master**, gõ lệnh **git checkout**:
+
+```bash
+$ git checkout master
+Switched to branch 'master'
+```
+
+## Hợp nhất (Merging) là gì?
+
+Hiểu đơn giản thì merging được dùng để kết hợp code từ nhiều nhánh lại với nhau thành một bản hoàn thiện.
+
+## Thực hiện Merging
+
+Sau khi bạn đã chắc chắn với những thay đổi của mình ở nhánh **feature/comments**. Bạn có thể kéo mọi thay đổi trong nhánh này về nhánh **master** bằng cách dùng **git merge**.
+
+<Alert severity="warning">
+  Bạn phải chuyển về nhánh <strong>master</strong> trước khi merge nhánh{" "}
+  <strong>feature/comments</strong> nhé.
+</Alert>
+
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git merge feature/comments
+```
+
+Sau khi đã hợp nhất thành công thì nhánh **feature/comments** trở nên vô giá trị, bạn có thể xóa nó đi bằng lệnh sau:
+
+```bash
+$ git branch -d feature/comments
+```
+
+Chúc các bạn học vui vẻ.

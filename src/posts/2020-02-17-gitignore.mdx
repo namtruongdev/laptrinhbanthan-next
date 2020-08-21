@@ -1,0 +1,41 @@
+---
+date: "2020-02-17"
+title: "Giới thiệu về .gitignore"
+thumbnail: gioi-thieu-ve-gitignore
+excerpt: .gitignore là gì? Cách sử dụng .gitignore? Sê ri thành thạo Git
+permalink: hoc-lap-trinh/gitignore
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+import Alert from "@material-ui/lab/Alert"
+
+## .gitignore là gì?
+
+.gitignore là một file text nhỏ thường xuất hiện trong hầu hết các project.
+
+## Cách sử dụng .gitignore?
+
+.gitignore thường được các lập trình viên sử dụng trong dự án của mình để bỏ qua các tệp tin và thư mục không cần thiết khi họ commit project của mình lên Github.
+
+Ví dụ: Mình muốn bỏ qua thư mục **node_modules** khi commit vì nó quá nặng và không cần thiết. Mình chỉ cần viết tên thư mục đó và trong file **.gitignore** là xong.
+
+```gitignore
+node_modules
+```
+
+<Alert severity="warning">
+  Nếu muốn bỏ qua thêm nhiều tập tin và thư mục khác thì phải xuống dòng. Mỗi
+  tên đặt trên một dòng.
+</Alert>
+
+```gitignore
+node_modules
+\_site
+.sass-cache
+.jekyll-cache
+```
+
+Chúc các bạn học vui vẻ.

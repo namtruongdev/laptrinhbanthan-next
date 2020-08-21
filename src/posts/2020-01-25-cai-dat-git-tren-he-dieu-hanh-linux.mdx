@@ -1,0 +1,63 @@
+---
+date: "2020-01-25"
+title: "Cài đặt git trên Hệ điều hành Linux"
+thumbnail: cai-dat-git-tren-he-dieu-hanh-linux
+excerpt: Hướng dẫn cài đặt Git trên Hệ điều hành Linux. Sê ri thành thạo Git
+permalink: hoc-lap-trinh/cai-dat-git-tren-he-dieu-hanh-linux
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+Chào các bạn, đây là bài đầu tiên trong sê ri thành tạo Git của mình. Sê ri này dành cho bất cứ ai vì nó là cơ bản.
+
+Dễ hiểu, ngắn gọn, súc tích. Hy vọng sẽ giúp được các bạn.
+
+## Git là gì?
+
+\- Phần mềm quản lý mã nguồn phân tán.
+
+\- Hiện tại là một trong các phần mềm quản lý mã nguôn phổ biến nhất.
+
+## Cài đặt Git
+
+Mình sẽ chỉ hướng dẫn cài trên Linux. Còn những Hệ điều hành khác cách cài gần giống, bạn có thể tham khảo thêm tại <a rel="noopener noreferrer" target="_blank" title="Git" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a>.
+
+Với Ubuntu, Kali Linux,.. (Các bản phân phối dựa trên Debian):
+
+```bash
+$ sudo apt install git-all -y
+```
+
+Cài xong thì tiếp tục gõ:
+
+```bash
+$ git --version
+```
+
+để kiểm tra xem bạn đã thực sự cài thành công Git hay chưa?
+
+## Thiết lập Git
+
+Để có thể sử dụng được Git ta phải cấu hình tên đăng nhập và mật khẩu cho nó.
+
+### Cấu hình Email đăng nhập
+
+```bash
+$ git config --global user.email "your email"
+```
+
+### Cấu hình tên của bạn
+
+```bash
+$ git config --global user.name "your name"
+```
+
+Vì mỗi lần thực hiện thao tác Push thì Git sẽ hỏi lại mật khẩu, khá bất tiện nên ta sẽ lưu mật khẩu tạm thời vào ram để giải quyết vấn đề này.
+
+```bash
+$ git config --global credential.helper 'cache --timeout=18000'
+```
+
+Chúc bạn thành công.

@@ -1,0 +1,51 @@
+---
+date: "2020-01-26"
+title: "Khởi tạo project với git"
+thumbnail: khoi-tao-project-voi-git
+excerpt: Bắt đầu một kho lưu trữ Git mới với một số lệnh cơ bản. Sê ri thành thạo Git
+permalink: hoc-lap-trinh/khoi-tao-project-voi-git
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+Chào các bạn, phần này sẽ hướng dẫn các bạn cách tạo một kho lưu trữ mới và thao tác với nó với một số lệnh cơ bản.
+
+## Tạo một kho lưu trữ mới hoặc khởi tạo lại một kho lưu trữ đã tồn tại
+
+```bash
+$ git init
+```
+
+Lệnh này tạo một kho lưu trữ trống, về cơ bản nó tạo ra một thư mục **.git** chứa các thư mục con cho các **objects**, **refs/heads**, **refs/tags** và các file mẫu.
+
+Mọi thao tác với kho lưu trữ trên local, lịch sử cũng sẽ được lưu vào trong thư mục này.
+
+## Giới thiệu file README.md
+
+Không chỉ riêng với Git mà với bất kỳ mã nguồn và kho lưu trữ nào, chúng ta có thể dễ dàng thấy sự xuất hiện của **README.md**.
+
+**README.md** là không bắt buộc nhưng rất cần thiết.
+
+Các lập trình viên, người tạo ra mã nguồn hoặc phần mềm thường viết vào trong đó các hướng dẫn sử dụng hoặc đơn giản là viết các thông tin giới thiệu để giúp mọi người hiểu hơn về dự án của họ.
+
+Được viết bằng ngôn ngữ đánh dấu **markdown**, cách viết như văn bản thuần túy và được đánh dấu bằng các ký tự đặc biệt để định dạng văn bản.
+
+## Theo dõi các thay đổi trên kho lưu trữ
+
+```bash
+$ git status
+```
+
+Lệnh trên sẽ nói cho bạn biết bạn vừa thay đổi thứ gì trên kho lưu trữ và yêu cầu bạn **git add** để bao gồm nó trong **commit** nếu bạn chưa bao gồm nó.
+
+## Xác nhận và đóng gói các file đã thay đổi
+
+```bash
+$ git commit -m "Mô tả cho thay đổi"
+```
+
+Lệnh trên thực hiện đóng gói các thay đổi thành một **Object** và gán cho nó một nhãn là mô tả của bạn.
+
+Chúc các bạn thành công nhé.

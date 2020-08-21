@@ -1,22 +1,52 @@
 import React from "react"
-import { Link } from "gatsby"
+import loadable from "@loadable/component"
+import { graphql, useStaticQuery } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+const Article = loadable(() => import("../components/Articles"))
+const Layout = loadable(() => import("../components/layout"))
+const Header = loadable(() => import("../components/Header"))
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+const IndexPage = ({ location }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      allMdx(sort: { fields: frontmatter___date, order: DESC }, limit: 9) {
+        edges {
+          node {
+            timeToRead
+            frontmatter {
+              title
+              thumbnail
+              excerpt
+              date(fromNow: true, locale: "vi-VN")
+              permalink
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const strings = [
+    "LẬP TRÌNH <span style='font-weight: 400'>BÀN CHÂN</span>",
+    "LẬP TRÌNH <span style='font-weight: 400'>BẢN THÂN</span>",
+  ]
+
+  return (
+    <>
+      <SEO
+        title="Trang chủ"
+        metaImage="https://res.cloudinary.com/alerthumg/image/upload/v1597821558/laptrinhbanthan/images/laptrinhbanthan.jpg"
+        pathname={location.pathname}
+      />
+      <Layout>
+        <Header strings={strings} />
+        <main id="main" className="main">
+          <Article data={data} />
+        </main>
+      </Layout>
+    </>
+  )
+}
 
 export default IndexPage

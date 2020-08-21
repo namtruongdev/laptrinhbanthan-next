@@ -1,0 +1,92 @@
+---
+date: "2020-02-23"
+title: "Xử lý xung đột trong Git với rebasing và merging"
+thumbnail: xu-ly-xung-dot-trong-git-voi-rebasing-va-merging
+excerpt: Cách xử lý xung đột trong Git với rebasing và merging, chọn rebasing hay merging?
+permalink: hoc-lap-trinh/xu-ly-xung-dot-trong-git
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+import ImagePost from "../components/ImagePost"
+
+## Rebasing vs Merging. Nên chọn cái nào?
+
+Mặc dù hai phương pháp trên đều cho một kết quả giống nhau. Nhưng rebasing và merging lại có cách hoạt động hoàn toàn khác nhau.
+
+Cụ thể khi bạn sử dụng lệnh **git merge** để hợp nhất hai nhánh lại thì nó sẽ chọn ra commit cuối cùng trên hai nhánh đó và tạo 1 commit khác để hợp 2 commit đó. Có vẻ khi dùng cách này thì bạn sẽ có một lịch sử commit khá là khó nhìn nếu không có các nguyên tắc chung đặt ra cho các thành viên trong nhóm.
+
+<ImagePost
+  thumb="xu-ly-xung-dot-trong-git-1"
+  alt="Ảnh 1 - Xử lý xung đột trong Git với rebasing và merging"
+/>
+
+Còn khi sử dụng **git rebase** để hợp nhất 2 nhánh lại thì bạn sẽ có một lịch sử đẹp hơn, thằng hàng hơn và dễ nhìn hơn **git merge**. Nhưng rebasing đúng như cái nghĩa đen của nó là phá hủy, nó di chuyển toàn bộ nhánh mà bạn muốn hợp nhất lên đầu nhánh chính và viết lại lịch sử commit của nhánh đó.
+
+<ImagePost
+  thumb="xu-ly-xung-dot-trong-git-2"
+  alt="Ảnh 1 - Xử lý xung đột trong Git với rebasing và merging"
+/>
+
+Vì vậy dùng **git merge** có vẻ là một phương án an toàn hơn nhưng câu trả lời chọn sử dụng **git merge** hay git **git rebase** vẫn là của bạn và tùy từng dự án.
+
+Hãy nhớ rằng bạn chỉ nên dùng **git rebase** trong nhánh của riêng bạn và đừng dùng nó với bất cứ thứ gì đã được đẩy lên remote nếu không muốn bị mọi người trong team ghét. Và nếu bạn chưa hiểu nhiều về rebasing thì tốt nhất bạn nên sử dụng merging vì nó an toàn hơn.
+
+## Gộp nhiều commit nhỏ thành 1 commit chính với interactive rebasing
+
+Để giúp histories tree trông đẹp hơn thì bạn phải dọn dẹp nó trên nhánh của bạn trước khi push nó lên remote.
+
+Ví dụ: Bạn đang viết tính năng comments cho công ty trên nhánh **feature/comments**, trong nhánh **feature/comments** thì lại có nhiều commit khác được tạo ra sau mỗi lần bạn sửa một cái gì đó trong nhánh này và việc bạn không clean lại nhánh **feature/comments** trước khi push lên remote sẽ góp phần làm cho histories tree của công ty không những khó quan sát hơn mà còn có các commit thừa, không quan trọng trên nhánh của bạn.
+
+Vì vậy để hạn chế điểu này, bạn sẽ sử dụng một thứ gọi là **squash** bằng cách sử dụng lệnh **git rebase** với tham số **-i**:
+
+```bash
+$ git rebase -i master
+```
+
+Tiếp theo terminal sẽ hiện ra danh sách toàn bộ các commit trên nhánh của bạn theo thứ tự từ trên xuống dưới, các commit mới nhất sẽ nằm phía dưới cùng và commit đầu tiên sẽ nằm trên cùng:
+
+```bash
+pick 380d5e1 release comments feature
+squash 30803a6 fix iss1
+squash 30803a2 fix iss2
+squash 30803a5 fix iss3
+squash 30803a3 fix iss4
+
+# Rebase c8d5f6a..30803a6 onto c8d5f6a (2 commands)
+
+#
+
+# Commands:
+
+# p, pick <commit> = use commit
+
+# r, reword <commit> = use commit, but edit the commit message
+
+# e, edit <commit> = use commit, but stop for amending
+
+# s, squash <commit> = use commit, but meld into previous commit
+
+# f, fixup <commit> = like "squash", but discard this commit's log message
+
+# x, exec <command> = run command (the rest of the line) using shell
+
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+
+# d, drop <commit> = remove commit
+
+# l, label <label> = label current HEAD with a name
+
+# t, reset <label> = reset HEAD to a label
+
+```
+
+Các bạn có thể thấy bên trên, bạn có rất nhiều commit **fix iss** và nó nên được bỏ qua khi push code lên remote bằng cách thay **pickup** bằng **squash** ở đầu mỗi commit cần hợp.
+
+Các bạn chỉ nên giữ lại commit đầu tiên thôi và các commit kia sẽ được hợp chung và với commit này.
+
+Đến đây thì bạn đã thấy được hiệu quả khi dùng interactive rebasing chưa nào?
+
+Chúc bạn học vui vẻ. Bye!

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Linux",
+    "slug": "linux"
+  },
+  {
+    "name": "Window",
+    "slug": "window"
+  },
+  {
+    "name": "Học lập trình",
+    "slug": "hoc-lap-trinh"
+  },
+  {
+    "name": "Thủ thuật",
+    "slug": "thu-thuat"
+  },
+  {
+    "name": "Phong cách sống",
+    "slug": "phong-cach-song"
+  }
+]

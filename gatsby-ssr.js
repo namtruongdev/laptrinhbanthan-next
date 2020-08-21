@@ -1,7 +1,10 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from "react"
+import Head from "./src/components/head"
+import "firebase/database"
 
-// You can delete this file if you're not using it
+import "./src/styles/global.scss"
+import "prismjs/plugins/line-numbers/prism-line-numbers.css"
+import "prismjs/plugins/command-line/prism-command-line.css"
+import "prismjs/themes/prism-tomorrow.css"
+
+export const wrapRootElement = ({ element }) => <Head>{element}</Head>

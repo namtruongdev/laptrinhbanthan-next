@@ -1,0 +1,143 @@
+---
+date: "2020-03-14"
+title: "5 cách đảo ngược 1 chuỗi trong JavaScript"
+thumbnail: 5-cach-dao-nguoc-1-chuoi-trong-javascript
+excerpt: Viết 1 hàm để đảo ngược một chuỗi là một trong những đề bài mà bạn có thể gặp được trong các cuộc phỏng vấn vào vị trí công việc liên quan đến Javascript.
+permalink: hoc-lap-trinh/5-cach-dao-nguoc-chuoi-trong-javascript
+author: Dương Nam Trường
+category: "Học lập trình"
+tag:
+  - JavaScript
+  - Thuật toán
+---
+
+**Viết một hàm để đảo ngược một chuỗi** là một trong những đề bài mà bạn có thể gặp được trong các cuộc phỏng vấn vào vị trí công việc liên quan đến JavaScript.
+Có thể công ty bạn đang ứng tuyển yêu cầu bạn không dùng các phương thức có sẵn trong JavaScript để giải bài toán. Vì vậy hãy cùng mình thử tìm hiểu và bỏ túi một vài cách giải quyết bài toán trên để phòng thân nhé.
+
+## 1. Vòng lặp for loop
+
+Đây là cách đơn giản nhất mà chúng ta có thể nghĩ ngay ra được lúc này. Trong phương pháp này chúng ta sẽ sử dụng vòng lặp giảm dần để lặp qua từng chữ cái của chuỗi và tạo một chuỗi mới bằng phương pháp cộng chuỗi.
+
+```jsx
+function reverse(str) {
+  let reversed = ""
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i]
+  }
+  console.log(reversed) // olleh
+}
+
+reverse("hello") //Output: olleh
+
+/*
+Giải thích:
+  - Ta khai báo một biến tên là reserved ở đầu function là một chuỗi rỗng (Biến này sẽ
+  trả về một chuỗi đã được đảo ngược sau khi cộng chuỗi).
+  - Bước 2:
+    + Lệnh 1: Ta khai báo biến i = str.length - 1, tức là giá trị ban đầu của i khi
+    chạy vòng lặp for là bằng giá trị của độ dài chuỗi trừ đi 1, tại sao lại trừ đi 1?
+    Vì index trong JS được đánh dấu từ 0 nhé. Ví dụ: chuỗi có 10 phần từ thì index của
+    nó chạy đến 9 là hết 10 phần tử rồi.
+    + Lệnh 2: Ta đặt i >= 0, tức là khi i giảm về đến 0 thì vòng lặp sẽ kết thúc.
+    + Lệnh 3: Ta cho i tự trừ đi một đơn vị sau mỗi lần lặp.
+  - Bước 3: Ta dùng kỹ thuật cộng chuỗi để nối các chữ lại với nhau sau mỗi lần lặp sẽ
+  được cộng dồn vào biến reversed.
+  - Bước 4: cuối cùng là in ra màn hình kết quả cuối cùng là biến reserved chứa đoạn 
+  chuỗi đã được đảo ngược
+*/
+```
+
+Một cách khác để giải bài toán trên là dùng vòng lặp **for...of**. Đây là một vòng lặp mới được giới thiệu trong ES6. Vòng lặp này có chức năng lặp qua từng phần tử trong một chuỗi hoặc một mảng. Dùng cách này có vẻ giúp code của bạn hạn chế lỗi và gọn gàng hơn cách trên.
+
+```jsx
+function reserve(str) {
+  let reversed = ""
+  for (let char of str) {
+    reversed = char + reversed
+    /*
+    Lưu ý: Phải là char + reversed thì mới nhận được chuỗi đảo ngược nhé. Bạn có thể 
+    thử làm ngược lại để kiểm tra kết quả.
+    */
+  }
+  console.log(reversed)
+}
+
+reverse("Hello") // Output: olleH
+```
+
+## 2. Dùng phương thức reverse()
+
+Vì **reversed()** là một phương thức trả về thứ tự đảo ngược của một mảng và nó chỉ được dùng trong mảng nên để có thể sử dụng được phương thức này giải quyết bài toán thì chúng ta cần phải sử dụng thêm kèm 2 phương thức khác là **split()** và **join()**.
+
+```jsx
+function reverse(str) {
+  return str.split("").reverse().join("")
+}
+
+reverse("Hello") // Output: olleH
+
+/*
+Rất nhanh gọn khi ta dùng các medthod dựng sẵn phải không nào.
+Giải thích: Đầu tiên ta sẽ phải tách chuỗi nhập vào và biến đổi nó thành một mảng bằng
+cách sử dụng split(''), trong split() ta truyền vào một chuỗi trống là để tách từng ký
+tự một.
+Sau đó ta dùng tiếp reverse() method để đảo ngược lại các phần tử trong mảng.
+Cuối cùng dùng join('') để ghép các phần tử trong mảng thành một chuỗi (Tương tự như
+split() ta cũng truyền vào một chuỗi rỗng để ghép liền các ký tự lại với nhau mà không
+phân cách bằng bất cứ ký tự nào).
+*/
+```
+
+## 3. Toán tử Spread
+
+Cách này tương tự như cách trên nhưng dù sao nó cũng đáng được nêu ra. Đó là sử dụng toán tử Spread (**...**) mới trong ES6. Toán tử Spread có thể phân rã các ký tự trong một chuỗi và biến đổi chuỗi thành mảng...
+
+Vì vậy, trong trường hợp này ta sẽ sử dụng toán tử Spread để phân tách cách kí tự trong chuỗi truyền vào.
+
+```jsx
+function reverse(str) {
+  return [...str].reverse().join("")
+  /*
+  [...str] nghĩa là phân tách các ký tự trong str parameter vừa truyền vào và biến nó
+  thành một mảng. Còn lại thực thực như cách trên.
+  */
+}
+reverse("hello") // Output: olleH
+```
+
+## 4. Phương thức Reduce()
+
+**Reduce()** là một phương thức được dùng cho mảng nên bạn cần phải dùng **split()** để tách chuỗi và biến đổi chuỗi đó thành mảng rồi mới sủ dụng được phương thức này.
+
+```jsx
+function reverse(str) {
+  return str.split("").reduce((rev, char) => char + rev, "")
+}
+/*
+Giải thích: Ai chưa biết về reduce() method thì có thể search gg để tìm hiểu thêm về
+nó. Ở trong bài toán này, ta truyền vào reduce() 2 para, rev nhận giá trị ban đầu của
+mảng, char là giá trị của phần tử hiện tại, kí tự single quote để đặt giá trị măc định
+cho rev là một chuỗi rỗng.
+ */
+```
+
+## 5. Đệ quy
+
+Cách cuối cùng là sử dụng phương pháp đệ quy. Đệ quy được hiểu là một hàm tự gọi lại chính nó, trong bài toán này mình sẽ sử dụng phương **substr()** để cắt dần chuỗi và sử dụng **access string syntax** để thêm kí tự vừa cắt ra vào cuỗi chuỗi. Nếu khó tưởng tượng thì cứ copy code về chạy thử rồi suy ngẫm nhé.
+
+```jsx
+function reverse(str) {
+  return str === "" ? str : reverse(str.substr(1)) + str[0]
+}
+
+/* Giải thích: Trong function này mình có sử dụng toán tử 3 ngôi (Ternary Operator) để 
+rút gọn code. Nếu tham số truyền vào là một chuỗi rỗng thì sẽ trả về chuỗi đó, nếu sai
+tức là chuỗi đó có giá trị thì sẽ thực hiện gọi lại hàm revese() để cắt chuỗi và cộng
+nó vào cuỗi cùng của chuỗi. Cứ thế đến khi chuỗi ban đầu bằng rỗng thì sẽ trả về
+chuỗi mới đã được đảo ngược.
+*/
+```
+
+Good job! Vậy là chúng ta đã học được 5 cách để đảo ngược một chuỗi trong JavaScript rồi đó.
+
+Chúc các bạn học tập tốt.

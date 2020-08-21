@@ -1,0 +1,123 @@
+---
+date: "2020-02-18"
+title: "Làm việc nhóm qua Git"
+thumbnail: lam-viec-nhom-qua-git
+excerpt: Cách làm việc nhóm với nhiều người thông qua Git. Sê ri thành thạo Git
+permalink: hoc-lap-trinh/lam-viec-nhom-qua-git
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+import Alert from "@material-ui/lab/Alert"
+import ImagePost from "../components/ImagePost"
+
+Không phải cứ nói làm việc nhóm là làm việc được, vì mỗi người đều có một quan điểm riêng, sở thích cá nhân riêng. Vì thế chúng ta mới cần một thứ gọi là quy trình làm việc, khi đó mọi người sẽ cùng theo một tiêu chuẩn chung nào đó mà đã được đặt ra từ trước.
+
+<Alert severity="warning">
+  Nếu bạn chưa có kiến thức cơ bản về git và hoàn không hiểu trong bài viết này
+  nói gì thì xin vui lòng xem lại các bài viết trước về git của mình.
+</Alert>
+
+Ví dụ: Bạn được sếp giao việc sửa lỗi **iss53** cho project của công ty và một người khác sửa một lỗi khác trong project. Vậy làm sao để hai người có thể code qua lại với nhau một cách nhanh gọn và thuận tiện nhất?
+
+Để dễ hiểu, mình sẽ quy định tên của 2 người là A và B.
+
+Người A khi sửa lỗi **iss53**, theo quy trình thì A sẽ phải tạo một branch mới.
+
+```bash
+$ git checkout -b iss53
+Switched to a new branch "iss53"
+```
+
+Lúc này nhánh chính của công ty trông sẽ như này:
+
+<ImagePost thumb="lam-viec-nhom-git-1" alt="Ảnh 1 - Làm việc nhóm qua Git" />
+
+Người A làm một công việc gì đó và tạo ra một commit trên nhánh **iss53**.
+
+```bash
+$ git commit -a -m 'added a new footer [issue 53]'
+```
+
+<ImagePost thumb="lam-viec-nhom-git-2" alt="Ảnh 2 - Làm việc nhóm qua Git" />
+
+Ở một nơi nào đó, Người B cũng làm tương tự như người A là tạo một branch mới tên là **hotfix** và làm một công việc gì đó rồi tạo ra một commit trên branch **hotfix**.
+
+```bash
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+$ vim index.html
+$ git commit -a -m 'fixed the broken email address'
+[hotfix 1fb7853] fixed the broken email address
+1 file changed, 2 insertions(+)
+```
+
+<ImagePost thumb="lam-viec-nhom-git-3" alt="Ảnh 3 - Làm việc nhóm qua Git" />
+
+Sau khi đã kiểm tra kỹ càng bản vá lỗi của mình, người B quyết định hợp nhất branch **hotfix** cùng với branch chính (master) của công ty bằng cách chạy lệnh **git merge** và sau đó dùng **git push** để đẩy nó lên git server của công ty.
+
+```bash
+$ git checkout master
+$ git merge hotfix
+Updating f42c576..3a0874c
+Fast-forward
+index.html | 2 ++
+1 file changed, 2 insertions(+)
+$ git push
+```
+
+Bây giờ nhánh chính của công ty bạn trông sẽ như thế này:
+
+<ImagePost thumb="lam-viec-nhom-git-4" alt="Ảnh 4 - Làm việc nhóm qua Git" />
+
+Khi hợp nhất xong thì có thể xóa nhánh đó đi vì bây giờ nó không quan trọng nữa.
+
+```bash
+$ git branch -d hotfix
+Deleted branch hotfix (3a0874c).
+```
+
+Nào, Bây giờ quay trở lại với người A, Vì người B đã làm xong công việc của họ và đã đẩy nó lên server git của công ty nên người A cần phải sử dụng **git pull** để kéo code về:
+
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git pull
+```
+
+Sau đó tiếp tục chuyển sang branch **iss53** và sử dụng lệnh **git rebase** để hợp nhất branch **master** vào branch **iss53** và làm tiếp công việc rồi tạo thêm một commit nữa trên branch **iss53**:
+
+```bash
+$ git checkout iss53
+Switched to branch 'iss53'
+$ git rebase master
+$ git commit -a -m 'finished the new footer [issue 53]'
+[iss53 ad82d7a] finished the new footer [issue 53]
+1 file changed, 1 insertion(+)
+```
+
+<ImagePost thumb="lam-viec-nhom-git-5" alt="Ảnh 5 - Làm việc nhóm qua Git" />
+
+Giả sử người A quyết định rằng công việc trên branch **iss53** đã hoàn tất. Người A sẽ checkout về branch **master** và sử dụng lệnh **git rebase** để hợp nhất branch **iss53** với branch **master**:
+
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git rebase iss53
+```
+
+Và cuối cùng xóa branch **iss53**:
+
+```bash
+$ git branch -d iss53
+```
+
+Cuối cùng là đẩy code lên git server của công ty:
+
+```bash
+$ git push
+```
+
+Vậy là bạn đã học được cách để làm việc nhóm với người khác qua git rồi đấy.

@@ -1,0 +1,67 @@
+---
+date: "2020-02-16"
+title: "Git checkout, git reset và cách sử dụng"
+thumbnail: git-checkout-va-git-reset
+excerpt: Git checkout là gì? git reset là gì? Cách sử dụng chúng ra sao? Sê ri thành thạo Git
+permalink: hoc-lap-trinh/git-checkout-git-reset-va-cach-su-dung
+author: Dương Nam Trường
+category: Học lập trình
+tag:
+  - Git
+---
+
+import Alert from "@material-ui/lab/Alert"
+
+## Git checkout là gì?
+
+Git checkout thường được dùng để chuyển đổi giữa các nhanh hoặc xóa thay đổi của một hoặc nhiều file đã chỉnh sửa trong working directory.
+
+### Cách sử dụng:
+
+```bash
+$ git checkout -- <Tên file cần xóa thay đổi>
+```
+
+Lệnh trên sẽ xóa mọi thay đổi mà bạn đã thêm vào trong file đó.
+
+Lệnh trên chỉ áp dụng cho những file không thuộc staging area.
+
+## Git reset là gì?
+
+Git reset thường được dùng để di chuyển một hoặc nhiều file từ Staging area về Working directory.
+
+### Cách sử dụng:
+
+Trong thực tế, sau khi bạn thực hiện **git add** để thêm các file vào staging area nhưng bạn lại cảm thấy chưa ưng ý và muốn chuyển lại các file đó về working directory. Bạn sẽ sử dụng **git reset** như sau:
+
+```bash
+$ git reset <file muốn chuyển về working directory>
+```
+
+Chỉnh sửa và thao tác với các file đã commit:
+
+Có 3 lựa chọn cho chúng ta:
+
+```bash
+Git reset --soft <to commit>
+
+Git reset --mixed <to commit>
+
+Git reset --hard <to commit>
+```
+
+Ví dụ:
+
+```bash
+$ Git reset --soft 7d6fe403d0ec58ed1add3076bb7f9197717c27ca
+```
+
+Lệnh trên sẽ chuyển commit với id như trên về trạng thái staging area.
+
+Tương tự với **--mixed** và **--hard** sẽ chuyển commit về trạng thái chưa được đưa vào staging area hoặc xóa bỏ cả commit đó luôn.
+
+<Alert severity="error">
+  Lưu ý khi dùng <strong>--hard</strong> nếu không cẩn thẩn sẽ bị mất dữ liệu.
+</Alert>
+
+Chúc các bạn học vui vẻ.
