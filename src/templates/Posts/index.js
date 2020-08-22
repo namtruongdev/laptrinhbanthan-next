@@ -39,6 +39,7 @@ const Ads = loadable(() => import("../../components/Ads"))
 
 const Post = ({ pageContext, path, data, location }) => {
   const thumbImage = data.file.childCloudinaryAsset.fluid.src
+  const ImageSEO = thumbImage.replace("/f_auto,q_auto", "")
 
   const tagSlug = data.allTagsJson.edges
   const categorySlug = data.allCategoriesJson.edges[0].node.slug
@@ -105,7 +106,7 @@ const Post = ({ pageContext, path, data, location }) => {
         description={pageContext.excerpt}
         pathname={location.pathname}
         metaType="article"
-        metaImage={thumbImage}
+        metaImage={ImageSEO}
         schema={schema}
       />
       <Layout>
