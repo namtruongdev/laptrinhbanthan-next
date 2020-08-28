@@ -35,7 +35,7 @@ function SEO({
   const image = metaImage ? metaImage : null
   const type = metaType ? metaType : "website"
 
-  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}/` : null
+  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
 
   const metaSchema = schema
     ? schema

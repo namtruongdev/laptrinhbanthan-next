@@ -59,12 +59,6 @@ module.exports = {
         ignore: [`**/\.*`],
       },
     },
-    {
-      resolve: "gatsby-plugin-page-creator",
-      options: {
-        path: `${__dirname}/src/posts`,
-      },
-    },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -94,7 +88,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#eb6383`,
         theme_color: `#eb6383`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/logo.png`, // This path is relative to the root of the site.
       },
     },

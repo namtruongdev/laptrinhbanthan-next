@@ -61,6 +61,10 @@ export const Posts = styled.div`
       transition: all 0.3s ease;
     }
   }
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 1.125rem;
+  }
   & > p {
     font-family: "Open Sans", "-apple-system", "BlinkMacSystemFont", "Segoe UI",
       "Roboto", "Helvetica Neue", "Arial", "sans-serif", "Apple Color Emoji",

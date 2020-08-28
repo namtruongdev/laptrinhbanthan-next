@@ -1,44 +1,38 @@
 ---
 date: "2019-02-06"
-comments: true
 thumbnail: hack-facebook-cover
 title: Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit
-author: Nam Trường
+author: Dương Nam Trường
 excerpt: Đây là kỹ thuật đầu tiên trong Sê-ri Hacktips của mình, hướng dẫn này giúp bạn có thể Hack được bất cứ tài khoản xã hội nào...
-seo_description: Đây là kỹ thuật đầu tiên trong Sê-ri Hacktips của mình, hướng dẫn này giúp bạn có thể Hack được bất cứ tài khoản xã hội nào, laptrinhbanthan, lập trình bản thân, lap trinh ban than, nam truong, nam trường...
 permalink: linux/huong-dan-hack-tai-khoan-facebook-voi-ngrok-va-setoolkit
-amp: /linux/huong-dan-hack-tai-khoan-facebook-voi-ngrok-va-setoolkit.amp.html
 category: Linux
 tag:
   - Hack tài khoản Facebook
 ---
 
-<ol class="danger">
-  <li>Mọi nội dung trong bài đăng này chỉ dừng ở mức độ giáo dục.</li>
-  <li>
-    Mình sẽ không chịu trách nhiệm nếu các bạn sử dụng chúng để vi phạm pháp
-    luật.
-  </li>
-</ol>
+import Alert from "@material-ui/lab/Alert"
+import ImagePost from "../components/ImagePost"
+import Quote from "../components/Quotes/"
 
-<p class="first-letter">
-  <strong>
-    Chào mọi người, hôm nay mình sẽ hướng dẫn các bạn Hack bất kì một tài khoản
-    nào với SEtookit và Ngrok vô cùng đơn giản. Ở bài này, mình hướng dẫn các
-    bạn làm trên Hệ điều hành Linux, nên điều kiện cầu là máy các bạn đang dùng
-    phải cài sẵn một bản Distro bất kì của Linux nha. Ví dụ: Mình đang dùng Kali
-    linux để hướng dẫn các bạn.
-  </strong>
-</p>
+<Alert severity="warning">
+  Mọi nội dung trong bài đăng này chỉ dừng ở mức độ giáo dục. Mình sẽ không chịu
+  trách nhiệm nếu các bạn sử dụng chúng để vi phạm pháp luật.
+</Alert>
+
+Chào mọi người, hôm nay mình sẽ hướng dẫn các bạn Hack bất kì một tài khoản
+nào với SEtookit và Ngrok vô cùng đơn giản. Ở bài này, mình hướng dẫn các
+bạn làm trên Hệ điều hành Linux, nên điều kiện cầu là máy các bạn đang dùng
+phải cài sẵn một bản Distro bất kì của Linux nha. Ví dụ: Mình đang dùng Kali
+linux để hướng dẫn các bạn.
 
 Nếu các bạn không biết Hệ điều hành Linux là gì thì xin vui lòng dừng đọc bài viết này để tìm hiểu và cài đặt nó trước đã nhé.
 
 Các bạn có thể tham khảo về Hệ điều hành Kali linux <a rel="noopener" title="https://kali.org" target="_blank" href="https://kali.org">tại đây</a>.
 
-{% responsive_image_block %}
-path: assets/img/kali-linux.jpg
-alt: {{ page.title }} - Ảnh 1
-{% endresponsive_image_block %}
+<ImagePost
+  thumb="kali-linux"
+  alt="Ảnh 1 - Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit"
+/>
 
 ## Tấn công ngoài Internet
 
@@ -46,10 +40,10 @@ Mình rất hay nhận được các câu hỏi của các bạn dạng như: _T
 
 Giải thích dễ hiểu, Port Forward tức là chuyển hướng cổng dịch vụ. Trong mạng LAN thì các máy tính có cùng một tầng mạng thì không phải chuyển hướng. Còn ngoài Internet tức là phải đi qua router, Port forward là một tính năng của router cho phép ta cấu hình chuyển hướng dữ liệu từ ngoài Internet vào địa chỉ IP của một thiết bị trong LAN.
 
-{% responsive_image_block %}
-path: assets/img/hack-facebook-1.jpg
-alt: {{ page.title }} - Ảnh 2
-{% endresponsive_image_block %}
+<ImagePost
+  thumb="hack-facebook-1"
+  alt="Ảnh 2 - Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit"
+/>
 
 Ví dụ như này, bạn hãy tưởng tượng là nếu bạn đang ở trong nhà, phòng A (thiết bị A) muốn tìm phòng B (thiết bị B) thì đơn giản rồi, không phải đi qua cửa chính (router). Còn người ngoài (Internet) muốn tìm anh A thì nhất định phải đi qua cửa chính, nếu ta không thiết lập Port forward thì coi như cửa đóng. Và các thiết lập Port forward như một bảng chỉ dẫn, phòng anh A số phỏng 192.168.1.105, vậy là thằng khách đi kiếm phòng có số y như vậy. Mà nếu không tìm ra thì tại vì bảng chỉ dẫn sai.
 
@@ -64,22 +58,22 @@ Ngork được viết bằng Go. Hiện tại thì trang chủ ngrok cung cấp 
 
 ## Sử dụng SEtoolkit để làm gì?
 
-Ngrok giúp bạn ra ngoài mạng Lan rồi thì chúng ta phải cần thêm một thứ để lưu trữ chứ.Để thực hiện điều này, bạn có thể sử dụng <a rel="noopener" target="_blank" title="https://github.com/trustedsec/social-engineer-toolkit" href="https://github.com/trustedsec/social-engineer-toolkit">Setoolkit</a> (Social Engineering Toolkit), được phát triển bởi Dave kennedy <a rel="noopener" title="https://twitter.com/hackingdave" target="_blank" href="https://twitter.com/hackingdave">@hackingdave</a>. Lưu trữ các trang lừa đảo cục bộ của bạn bằng cách sử dụng Apache & php. Nếu bạn không muốn làm những thứ phức tạp thì bạn sẽ thử công cụ tự động tuyệt vời này được gọi là <a rel="noopener" title="https://github.com/UndeadSec/SocialFish" target="_blank" href="https://github.com/UndeadSec/SocialFish">SocialPhish</a>.Thôi không xàm nữa, lan man quá. Mình vào thẳng vấn đề luôn. À mà quên, kiểu tấn công này là dạng Social Phishing nha. Nên khi các bạn làm được như trên rồi thì mới chỉ chắc chẵn có trong tay 50% thành công thôi vì nó cần kĩ năng mềm nữa. Mình tặng các bạn một câu:
+Ngrok giúp bạn ra ngoài mạng Lan rồi thì chúng ta phải cần thêm một thứ để lưu trữ chứ.Để thực hiện điều này, bạn có thể sử dụng [Setoolkit](https://github.com/trustedsec/social-engineer-toolkit) (Social Engineering Toolkit), được phát triển bởi Dave kennedy [@hackingdave](https://twitter.com/hackingdave). Lưu trữ các trang lừa đảo cục bộ của bạn bằng cách sử dụng Apache & php. Nếu bạn không muốn làm những thứ phức tạp thì bạn sẽ thử công cụ tự động tuyệt vời này được gọi là [SocialPhish](https://github.com/UndeadSec/SocialFish). Thôi không xàm nữa, lan man quá. Mình vào thẳng vấn đề luôn. À mà quên, kiểu tấn công này là dạng Social Phishing nha. Nên khi các bạn làm được như trên rồi thì mới chỉ chắc chẵn có trong tay 50% thành công thôi vì nó cần kĩ năng mềm nữa. Mình tặng các bạn một câu:
 
-<p style="text-align: center; font-style: italic;">
-  "Để trở thành một Lập trình viên giỏi thì kĩ năng cứng thôi là chưa đủ"
-</p>
+<Quote>
+  Để trở thành một Lập trình viên giỏi thì kĩ năng cứng thôi là chưa đủ
+</Quote>
 
 Kĩ năng mềm ở đây là bạn phải giao tiếp thế nào để làm cho Victim (Đối tượng bị tấn công) tin và làm theo bạn. Thì bạn mới có thể thực hiện được những ý đồ đen tối của bạn tiếp theo chứ.
 
 ### Bước 1. Tải về và đăng ký tài khoản
 
-Các bạn truy cập và tải Ngrok <a rel="noopener" target="_blank" title="https://ngrok.com/download" href="https://ngrok.com/download">tại đây</a>.
+Các bạn truy cập và tải Ngrok [tại đây](https://ngrok.com/download).
 
-{% responsive_image_block %}
-path: assets/img/hack-facebook-3.jpg
-alt: {{ page.title }} - Ảnh 3
-{% endresponsive_image_block %}
+<ImagePost
+  thumb="hack-facebook-3"
+  alt="Ảnh 3 - Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit"
+/>
 
 Như đã nói ở trên tùy vào từng Hệ điều hành thì có những file thực thi khác nhau. Ở đây mình dùng **Kali Linux 64bit** nên mình sẽ chọn **Download for Linux** (Nó đề xuất sẵn cho rồi).
 
@@ -94,67 +88,67 @@ Tiếp theo ta được file ngrok. Hãy copy nó vào đường dẫn này nhé
 Rồi, cùng làm theo mình nhé.
 Các bạn mở Terminal lên rồi gõ:
 
-{% highlight terminal linenos %}
-:~\$ ngrok
-{% endhighlight %}
+```bash
+$ ngrok
+```
 
 Ta sẽ mở một Tunnel vào cổng 80 để chạy SEtoolkit:
 
-{% highlight terminal linenos %}
-:~\$ ngrok http 80
-{% endhighlight %}
+```bash
+$ ngrok http 80
+```
 
 Tiếp tục đến SEtoolkit nữa là xong, cái này tích hợp sẵn trên Kali Linux rồi nhé nên khỏi phải cài đặt gì hết. Các bạn mở tiếp một Tab Terminal nữa rồi gõ lệnh sau:
 
-{% highlight terminal linenos %}
-:~\$ sudo setoolkit
-{% endhighlight %}
+```bash
+$ sudo setoolkit
+```
 
 Nhập mật khẩu của bạn vào để cấp quyền root.
 
 Chọn 1) **Social – Engineering Attacks**. Lệnh:
 
-{% highlight terminal linenos %}
-:~\$ set>1
-{% endhighlight %}
+```bash
+$ set>1
+```
 
 Chọn tiếp 2) **Website Attack Vectors**. Lệnh:
 
-{% highlight terminal linenos %}
-:~\$ set>2
-{% endhighlight %}
+```bash
+$ set>2
+```
 
 Chọn tiếp 3) **Credential Browser Exploit Method**. Lệnh:
 
-{% highlight terminal linenos %}
-:~\$ set>3
-{% endhighlight %}
+```bash
+$ set>3
+```
 
 Tiếp tục chọn **2) Site Cloner**. Lệnh:
 
-{% highlight terminal linenos %}
-:~\$ set:webattack>2
-{% endhighlight %}
+```bash
+$ set:webattack>2
+```
 
 Rồi các bạn quay trở lại Tab Terminal kia. Các bạn nhìn lên dòng **Forwarding**. Rồi copy trang web Ngrok đã tạo ngẫu riêng cho chúng ta.
 
 Ví dụ: Của mình là **7f5e136c.ngrok.io** thì mình copy nó và paste vào Terminal bên kia như hình dưới
 
-{% responsive_image_block %}
-path: assets/img/hack-facebook-4-min.jpg
-alt: {{ page.title }} - Ảnh 4
-{% endresponsive_image_block %}
+<ImagePost
+  thumb="hack-facebook-4-min"
+  alt="Ảnh 4 - Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit"
+/>
 
 Cố lên, sắp xong rồi 😃😃. Đến bước này thì các bạn nhập vào website mà mình muốn giả mạo vào tùy bạn.
 
 Ví dụ: mình muốn hack nick facebook thì mình sẽ nhập là: **https://www.facebook.com**. (xem hình dưới)
 
-{% responsive_image_block %}
-path: assets/img/hack-facebook-5-min.jpg
-alt: {{ page.title }} - Ảnh 5
-{% endresponsive_image_block %}
+<ImagePost
+  thumb="hack-facebook-5-min"
+  alt="Ảnh 5 - Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit"
+/>
 
-Rồi. Xong, giờ các bạn vào các trang rút gọn link như <a rel="noopener" href="https://bitly.com" title="https://bitly.com" target="_blank">bit.ly</a> chẳng hạn:
+Rồi. Xong, giờ các bạn vào các trang rút gọn link như [bit.ly](https://bitly.com) chẳng hạn:
 
 Mục đích của công việc này là tạo ra đường link đẹp để khỏi bị nghi ngờ.
 
@@ -164,10 +158,10 @@ Giờ bạn đem cái link đó đi để tiếp cận với Victim. Nói chung 
 
 Còn vấn đề biết Victim vào Website của mình hay chưa thì các bạn quay trở lại cái tab Terminal SEtoolkit lúc nãy để xem nhá. Nhớ không được tắt Tab nào đi. Mỗi link chỉ tồn tại trong vòng 7 tiếng. Sau 7 tiếng link sẽ chết hoặc bạn đóng hết Terminal đi nó cũng sẽ tắt.
 
-{% responsive_image_block %}
-path: assets/img/hack-facebook-6.jpg
-alt: {{ page.title }} - Ảnh 6
-{% endresponsive_image_block %}
+<ImagePost
+  thumb="hack-facebook-6"
+  alt="Ảnh 6 - Hướng dẫn hack tài khoản Facebook với Ngrok và SEtoolkit"
+/>
 
 Nếu Victim mà dính thì bạn sẽ nhận được thành quả như trên. hì 😝
 

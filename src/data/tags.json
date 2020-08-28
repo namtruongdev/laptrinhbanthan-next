@@ -76,5 +76,17 @@
   {
     "name": "Thuật toán",
     "slug": "thuat-toan"
+  },
+  {
+    "name": "Sinh viên",
+    "slug": "sinh-vien"
+  },
+  {
+    "name": "Github",
+    "slug": "github"
+  },
+  {
+    "name": "Github Education",
+    "slug": "github-education"
   }
 ]
