@@ -39,6 +39,8 @@ export const NavLink = css`
 // Hero
 
 export const HeroImage = styled.div`
+  background-image: url(https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg);
+  background-size: cover;
   z-index: 40;
   height: 90vh;
   position: relative;
@@ -86,16 +88,18 @@ export const SiteName = css`
     }
   }
 `
-export const HeroVideo = styled.video`
-  z-index: -1;
-  object-fit: cover;
-  width: 100%;
-  height: 90vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-`
+// export const HeroVideo = styled.span`
+//   background-image: url(https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg);
+//   background-size: cover;
+//   z-index: -1;
+//   object-fit: cover;
+//   width: 100%;
+//   height: 90vh;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   pointer-events: none;
+// `
 export const HeroOverlay = styled.div`
   position: absolute;
   bottom: -1px;

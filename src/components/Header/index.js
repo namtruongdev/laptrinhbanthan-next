@@ -1,9 +1,8 @@
 import React from "react"
-import loadable from "@loadable/component"
 
-const Hero = loadable(() => import("./hero"))
-const HeroScroll = loadable(() => import("./hero-scroll"))
-const Nav = loadable(() => import("./nav"))
+import Hero from "./hero"
+import HeroScroll from "./hero-scroll"
+import Nav from "./nav"
 
 const Header = ({ strings }) => {
   return (

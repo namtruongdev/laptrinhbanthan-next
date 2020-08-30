@@ -1,11 +1,10 @@
 import React from "react"
-import loadable from "@loadable/component"
 import { NavContainer, NavFlex, NavLi, NavLink } from "./styles"
 import { graphql, useStaticQuery, Link } from "gatsby"
 
-const Container = loadable(() => import("@material-ui/core/Container"))
-const Hidden = loadable(() => import("@material-ui/core/Hidden"))
-const Search = loadable(() => import("../Search"))
+import Container from "@material-ui/core/Container"
+import Hidden from "@material-ui/core/Hidden"
+import Search from "../Search"
 
 const Nav = () => {
   const data = useStaticQuery(graphql`

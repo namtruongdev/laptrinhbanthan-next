@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react"
-import loadable from "@loadable/component"
 
 import { SearchIcon, useStyles, quering, SearchContainer } from "./styles"
 import {
@@ -9,17 +8,13 @@ import {
 } from "react-instantsearch-dom"
 import algoliasearch from "algoliasearch/lite"
 
-const Popper = loadable(() => import("@material-ui/core/Popper"))
-const SearchRoundedIcon = loadable(() =>
-  import("@material-ui/icons/SearchRounded")
-)
-const Paper = loadable(() => import("@material-ui/core/Paper"))
-const Typography = loadable(() => import("@material-ui/core/Typography"))
-const ClickAwayListener = loadable(() =>
-  import("@material-ui/core/ClickAwayListener")
-)
-const Input = loadable(() => import("./input"))
-const SearchResult = loadable(() => import("./SearchResult"))
+import Popper from "@material-ui/core/Popper"
+import SearchRoundedIcon from "@material-ui/icons/SearchRounded"
+import Paper from "@material-ui/core/Paper"
+import Typography from "@material-ui/core/Typography"
+import ClickAwayListener from "@material-ui/core/ClickAwayListener"
+import Input from "./input"
+import SearchResult from "./SearchResult"
 
 const Search = () => {
   const anchorRef = useRef(null)

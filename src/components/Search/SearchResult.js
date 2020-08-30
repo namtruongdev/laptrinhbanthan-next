@@ -1,5 +1,4 @@
 import React from "react"
-import loadable from "@loadable/component"
 import {
   resultCount,
   listResults,
@@ -18,8 +17,8 @@ import {
   PoweredBy,
 } from "react-instantsearch-dom"
 
-const Typography = loadable(() => import("@material-ui/core/Typography"))
-const Divider = loadable(() => import("@material-ui/core/Divider"))
+import Typography from "@material-ui/core/Typography"
+import Divider from "@material-ui/core/Divider"
 
 const HitCount = connectStateResults(({ searchResults }) => {
   const hitCount = searchResults && searchResults.nbHits

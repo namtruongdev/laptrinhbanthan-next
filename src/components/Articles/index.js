@@ -1,12 +1,11 @@
 import React from "react"
-import loadable from "@loadable/component"
 
 import { PostWrap, PostList, PostItems } from "./styles"
 
-const PostItem = loadable(() => import("./postItem"))
-const Paginator = loadable(() => import("../Paginator"))
-const Container = loadable(() => import("@material-ui/core/Container"))
-const Grid = loadable(() => import("@material-ui/core/Grid"))
+import PostItem from "./postItem"
+import Paginator from "../Paginator"
+import Container from "@material-ui/core/Container"
+import Grid from "@material-ui/core/Grid"
 
 const Article = ({ pageContext, data }) => {
   const posts = data.allMdx.edges

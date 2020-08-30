@@ -1,9 +1,7 @@
 import React, { useContext } from "react"
-import loadable from "@loadable/component"
 import {
   HeroImage,
   SiteName,
-  HeroVideo,
   HeroOverlay,
   PreviewWave,
   PreviewParallax,
@@ -12,30 +10,20 @@ import {
 import "react-typed/dist/animatedCursor.css"
 
 import { ThemeContext } from "../layout"
+import Typography from "@material-ui/core/Typography"
+import Typed from "react-typed"
 
-const poster =
-  "https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg"
-const video =
-  "https://res.cloudinary.com/alerthumg/video/upload/v1596350262/laptrinhbanthan/videos/video_aswo0k.mp4"
-
-const Typography = loadable(() => import("@material-ui/core/Typography"))
-const Typed = loadable(() => import("react-typed"))
+// const poster =
+//   "https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg"
+// const video =
+//   "https://res.cloudinary.com/alerthumg/video/upload/v1596350262/laptrinhbanthan/videos/video_aswo0k.mp4"
 
 const Hero = ({ strings }) => {
   const theme = useContext(ThemeContext)
   return (
     <>
       <HeroImage>
-        <HeroVideo
-          className="hero__video"
-          playsInline
-          autoPlay
-          muted
-          loop
-          poster={poster}
-        >
-          <source src={video} type="video/mp4"></source>
-        </HeroVideo>
+        {/* <HeroVideo className="hero__video"></HeroVideo> */}
 
         <Typography align="center" variant="h2" component="h1" css={SiteName}>
           <Typed

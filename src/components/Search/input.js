@@ -1,9 +1,8 @@
 import React from "react"
-import loadable from "@loadable/component"
 
 import { connectSearchBox } from "react-instantsearch-dom"
 
-const TextField = loadable(() => import("@material-ui/core/TextField"))
+import TextField from "@material-ui/core/TextField"
 
 export default connectSearchBox(({ refine }) => {
   return (

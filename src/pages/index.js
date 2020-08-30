@@ -3,9 +3,9 @@ import loadable from "@loadable/component"
 import { graphql, useStaticQuery } from "gatsby"
 
 import SEO from "../components/seo"
+import Layout from "../components/layout"
+import Header from "../components/Header"
 const Article = loadable(() => import("../components/Articles"))
-const Layout = loadable(() => import("../components/layout"))
-const Header = loadable(() => import("../components/Header"))
 
 const IndexPage = ({ location }) => {
   const data = useStaticQuery(graphql`

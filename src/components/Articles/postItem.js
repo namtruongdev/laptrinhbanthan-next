@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react"
-import loadable from "@loadable/component"
 import { useImage } from "../../hooks"
 
 import { PostTitle, PostTitleDark, PostInfo, PostTVR, Thumb } from "./styles"
@@ -7,22 +6,16 @@ import { Link } from "gatsby"
 
 import { ThemeContext } from "../layout"
 
-const Card = loadable(() => import("@material-ui/core/Card"))
-const CardActionArea = loadable(() =>
-  import("@material-ui/core/CardActionArea")
-)
-const CardActions = loadable(() => import("@material-ui/core/CardActions"))
-const CardContent = loadable(() => import("@material-ui/core/CardContent"))
-const Typography = loadable(() => import("@material-ui/core/Typography"))
-const QueryBuilderRoundedIcon = loadable(() =>
-  import("@material-ui/icons/QueryBuilderRounded")
-)
-const WhatshotRoundedIcon = loadable(() =>
-  import("@material-ui/icons/WhatshotRounded")
-)
-const Skeleton = loadable(() => import("@material-ui/lab/Skeleton"))
-const Img = loadable(() => import("gatsby-image"))
-const ViewCounter = loadable(() => import("../ViewCounter"))
+import Card from "@material-ui/core/Card"
+import CardActionArea from "@material-ui/core/CardActionArea"
+import CardActions from "@material-ui/core/CardActions"
+import CardContent from "@material-ui/core/CardContent"
+import Typography from "@material-ui/core/Typography"
+import QueryBuilderRoundedIcon from "@material-ui/icons/QueryBuilderRounded"
+import WhatshotRoundedIcon from "@material-ui/icons/WhatshotRounded"
+import Skeleton from "@material-ui/lab/Skeleton"
+import Img from "gatsby-image"
+import ViewCounter from "../ViewCounter"
 
 const PostItem = ({ data }) => {
   const { title, thumbnail, excerpt, permalink, date, timeToRead } = data
