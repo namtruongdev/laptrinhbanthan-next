@@ -104,7 +104,7 @@ const Post = ({ pageContext, path, data, location }) => {
       <SEO
         title={pageContext.title}
         description={pageContext.excerpt}
-        pathname={location.pathname}
+        pathname={`${location.pathname}/`}
         metaType="article"
         metaImage={ImageSEO}
         schema={schema}

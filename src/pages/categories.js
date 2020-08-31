@@ -51,7 +51,7 @@ const Category = ({ location }) => {
     <>
       <SEO
         title="Danh mục"
-        pathname={location.pathname}
+        pathname={`${location.pathname}/`}
         metaImage="https://res.cloudinary.com/alerthumg/image/upload/v1597821558/laptrinhbanthan/images/laptrinhbanthan.jpg"
       />
       <Layout>

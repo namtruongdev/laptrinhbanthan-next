@@ -78,7 +78,7 @@ const Tags = ({ location }) => {
       <SEO
         title="Thẻ"
         metaImage="https://res.cloudinary.com/alerthumg/image/upload/v1597821558/laptrinhbanthan/images/laptrinhbanthan.jpg"
-        pathname={location.pathname}
+        pathname={`${location.pathname}/`}
       />
       <Layout>
         <main id="main" className="main">

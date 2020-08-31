@@ -15,7 +15,7 @@ const Category = ({ pageContext, data, location }) => {
       <SEO
         title={pageContext.category}
         metaImage="https://res.cloudinary.com/alerthumg/image/upload/v1597821558/laptrinhbanthan/images/laptrinhbanthan.jpg"
-        pathname={location.pathname}
+        pathname={`${location.pathname}/`}
       />
       <Layout>
         <Header strings={strings} />

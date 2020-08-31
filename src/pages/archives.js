@@ -52,7 +52,7 @@ const Archives = ({ location }) => {
     <>
       <SEO
         title="Lưu trữ"
-        pathname={location.pathname}
+        pathname={`${location.pathname}/`}
         metaImage="https://res.cloudinary.com/alerthumg/image/upload/v1597821558/laptrinhbanthan/images/laptrinhbanthan.jpg"
       />
       <Layout>
