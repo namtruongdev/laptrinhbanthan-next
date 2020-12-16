@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import SEO from "../components/seo"
-// import Layout from "../components/layout"
+import Layout from '../components/Layout';
 // import Header from "../components/Header"
 // const Article = loadable(() => import('../components/Articles'));
 
@@ -19,7 +19,9 @@ const IndexPage = ({ location }) => {
           <Article data={data} />
         </main>
       </Layout> */}
-      <h1>Day la home page</h1>
+      <Layout>
+        <h1>Day la home page</h1>
+      </Layout>
     </>
   );
 };
