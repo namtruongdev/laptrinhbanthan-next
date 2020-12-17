@@ -1,21 +1,25 @@
-import { css } from "@emotion/core"
-import styled from "@emotion/styled"
+import styled from 'styled-components';
+import { Dialog, Slide, Fab, Typography } from '@material-ui/core';
+import { MenuRounded, FavoriteRounded, CloseRounded } from '@material-ui/icons';
 
-export const Menu = css`
+export const Menu = styled(Fab)`
   position: fixed;
   right: 15px;
   bottom: 15px;
   visibility: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 99;
-`
+`;
 
-export const DialogStyledLight = css`
+export const DialogStyled = styled(Dialog)`
   .MuiBackdrop-root {
     background: transparent;
   }
   .MuiDialog-paper {
-    background: rgba(255, 255, 255, 0.7);
+    background: ${(props) =>
+      props.theme === 'dark'
+        ? 'rgba(0, 0, 0, 0.7)'
+        : 'rgba(255, 255, 255, 0.7)'};
     justify-content: center;
     align-items: center;
 
@@ -26,24 +30,7 @@ export const DialogStyledLight = css`
       padding: 0 15px;
     }
   }
-`
-export const DialogStyledDark = css`
-  .MuiBackdrop-root {
-    background: transparent;
-  }
-  .MuiDialog-paper {
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-
-    .menu-copyright {
-      text-align: center;
-      position: absolute;
-      bottom: 15px;
-      padding: 0 15px;
-    }
-  }
-`
+`;
 
 export const MenuNavigation = styled.nav`
   ul {
@@ -63,6 +50,10 @@ export const MenuNavigation = styled.nav`
         text-decoration: none;
         font-size: 1.5rem;
         letter-spacing: 0px;
+        color: ${(props) =>
+          props.theme === 'dark'
+            ? ' rgba(255, 255, 255, 0.87)'
+            : 'rgba(0, 0, 0, 0.87)'}
         padding: 1rem 1.5rem;
         &:hover {
           color: #eb6383;
@@ -71,17 +62,7 @@ export const MenuNavigation = styled.nav`
       }
     }
   }
-`
-export const MenuNavigationLight = css`
-  ul li a {
-    color: rgba(0, 0, 0, 0.87);
-  }
-`
-export const MenuNavigationDark = css`
-  ul li a {
-    color: rgba(255, 255, 255, 0.87);
-  }
-`
+`;
 
 export const FooterCopyrightAuthor = styled.a`
   text-decoration: none;
@@ -90,17 +71,17 @@ export const FooterCopyrightAuthor = styled.a`
     color: #fa9191;
     transition: ease-in all 0.3s;
   }
-`
+`;
 
-export const HeartIcon = css`
+export const HeartIcon = styled(FavoriteRounded)`
   fill: red;
   vertical-align: middle;
-`
+`;
 
-export const closeIcon = css`
+export const CloseIcon = styled(CloseRounded)`
   fill: #eb6383;
-`
-export const Close = css`
+`;
+export const Close = styled(Fab)`
   position: absolute;
   right: 30px;
   top: 30px;
@@ -108,4 +89,4 @@ export const Close = css`
   &:hover {
     background: #f2f2f2;
   }
-`
+`;

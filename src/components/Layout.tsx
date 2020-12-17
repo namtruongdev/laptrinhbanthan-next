@@ -9,7 +9,7 @@ import { AppProps } from '../interface';
 import { Theme } from '../types';
 
 const Footer = dynamic(() => import('./Footer'));
-// const BackTop = loadable(() => import('./BackTop'));
+const BackTop = dynamic(() => import('./BackTop'));
 
 interface MuiTheme {
   palette: {
@@ -42,8 +42,7 @@ const Layout = ({ children }: AppProps) => {
       <CssBaseline />
       <ThemeContextProvider>{children}</ThemeContextProvider>
       <Footer theme={theme}></Footer>
-
-      {/* <BackTop theme={theme} toggleTheme={toggleTheme} /> */}
+      <BackTop theme={theme} toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 };

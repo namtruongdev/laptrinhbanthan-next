@@ -1,6 +1,4 @@
-import dynamic from 'next/dynamic';
-
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
   FooterWrap,
   FooterLine,
@@ -14,16 +12,19 @@ import {
   HeartIcon,
 } from './styles';
 
-import { Divider, IconButton } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
+import { Theme } from '../../types';
 
-const FacebookIcon = dynamic(() => import('@material-ui/icons/Facebook'));
-const TelegramIcon = dynamic(() => import('@material-ui/icons/Telegram'));
-const GitHubIcon = dynamic(() => import('@material-ui/icons/GitHub'));
-const MailOutlineRoundedIcon = dynamic(
-  () => import('@material-ui/icons/MailOutlineRounded')
-);
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 
-const Footer = ({ theme }) => (
+type FooterProps = {
+  theme: Theme;
+};
+
+const Footer = ({ theme }: FooterProps): ReactElement => (
   <FooterWrap>
     <FooterLine maxWidth="sm">
       <Divider variant="middle" />
