@@ -10,9 +10,9 @@ export const SwitchModeIcon = styled(Fab)`
   visibility: hidden;
   transition: transform 0.5s ease-in-out;
   z-index: 99;
-  background: ${(props) => (props.theme === 'dark' ? '#2a222a' : '#fef6cd')}
+  background: ${(props) => (props.theme === 'dark' ? '#2a222a' : '#fef6cd')};
   &:hover {
-    background: ${(props) => (props.theme === 'dark' ? '#1c171c' : '#fdf2b4')}
+    background: ${(props) => (props.theme === 'dark' ? '#1c171c' : '#fdf2b4')};
     transition: all 0.3s ease-in-out;
   }
 `;

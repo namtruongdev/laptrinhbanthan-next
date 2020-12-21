@@ -9,9 +9,17 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Zoom from '@material-ui/core/Zoom';
 import ExpandLessRoundedIcon from '@material-ui/icons/ExpandLessRounded';
+
+import { Theme } from '../types';
+import { AppProps } from '../interface';
+
 const FullScreenDialog = dynamic(() => import('./Dialogs/Dialogs'));
 const DarkMode = dynamic(() => import('./DarkMode'));
-import { AppProps } from '../interface';
+
+type BackTopProps = {
+  theme: Theme;
+  toggleTheme: Function;
+};
 
 if (typeof window !== `undefined`) {
   smoothscroll.polyfill();
@@ -38,7 +46,8 @@ const ScrollTop = ({ children }: AppProps): ReactElement => {
     threshold: 100,
   });
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
+    console.log('da chay vao day');
     if (typeof window !== `undefined`) {
       if (!trigger) {
         const iconX = document.querySelector<HTMLElement>('.menu button');
@@ -69,14 +78,18 @@ const ScrollTop = ({ children }: AppProps): ReactElement => {
 
   return (
     <Zoom in={trigger}>
-      <Options role="presentation" className="menu" onScroll={handleScroll}>
+      <Options
+        role="presentation"
+        className="menu"
+        onScroll={() => console.log('nam an shit')}
+      >
         {children}
       </Options>
     </Zoom>
   );
 };
 
-const BackTop = (props): ReactElement => {
+const BackTop = (props: BackTopProps): ReactElement => {
   const { theme, toggleTheme } = props;
   const [isClicked, setStatus] = useState<boolean>(false);
 
@@ -156,7 +169,7 @@ const BackTop = (props): ReactElement => {
       >
         <ExpandLessRoundedIcon />
       </ToTop>
-      <DarkMode theme={theme} toggleTheme={toggleTheme} />
+      <DarkMode theme={theme} toggleTheme={() => toggleTheme()} />
     </>
   );
 };

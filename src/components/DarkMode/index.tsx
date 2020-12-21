@@ -7,7 +7,6 @@ type DarkModeProps = {
   toggleTheme: () => Function;
 };
 const DarkMode = ({ theme, toggleTheme }: DarkModeProps): ReactElement => {
-  console.log(theme);
   return (
     <SwitchModeIcon
       size="medium"
