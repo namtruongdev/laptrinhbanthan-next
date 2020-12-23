@@ -1,31 +1,30 @@
-import React, { useContext } from "react"
+import React, { ReactElement, useContext } from 'react';
 import {
   HeroImage,
   SiteName,
   HeroOverlay,
   PreviewWave,
   PreviewParallax,
-} from "./styles"
+} from './styles';
 
-import "react-typed/dist/animatedCursor.css"
+import 'react-typed/dist/animatedCursor.css';
 
-import { ThemeContext } from "../layout"
-import Typography from "@material-ui/core/Typography"
-import Typed from "react-typed"
+import { ThemeContext } from '../layout';
+import Typed from 'react-typed';
 
 // const poster =
 //   "https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg"
 // const video =
 //   "https://res.cloudinary.com/alerthumg/video/upload/v1596350262/laptrinhbanthan/videos/video_aswo0k.mp4"
 
-const Hero = ({ strings }) => {
-  const theme = useContext(ThemeContext)
+const Hero = ({ strings }): ReactElement => {
+  const theme = useContext(ThemeContext);
   return (
     <>
       <HeroImage>
         {/* <HeroVideo className="hero__video"></HeroVideo> */}
 
-        <Typography align="center" variant="h2" component="h1" css={SiteName}>
+        <SiteName align="center" variant="h2" component="h1">
           <Typed
             strings={strings}
             typeSpeed={50}
@@ -33,7 +32,7 @@ const Hero = ({ strings }) => {
             smartBackspace
             backDelay={1}
           ></Typed>
-        </Typography>
+        </SiteName>
         <HeroOverlay>
           <PreviewWave
             xmlns="http://www.w3.org/2000/svg"
@@ -54,9 +53,9 @@ const Hero = ({ strings }) => {
                 x="48"
                 y="0"
                 fill={
-                  theme === "light"
-                    ? "rgba(255, 255, 255, 0.7)"
-                    : "rgba(0,0,0,0.7)"
+                  theme === 'light'
+                    ? 'rgba(255, 255, 255, 0.7)'
+                    : 'rgba(0,0,0,0.7)'
                 }
               />
               <use
@@ -64,9 +63,9 @@ const Hero = ({ strings }) => {
                 x="48"
                 y="3"
                 fill={
-                  theme === "light"
-                    ? "rgba(255,255,255,0.5)"
-                    : "rgba(0,0,0, 0.5)"
+                  theme === 'light'
+                    ? 'rgba(255,255,255,0.5)'
+                    : 'rgba(0,0,0, 0.5)'
                 }
               />
               <use
@@ -74,23 +73,23 @@ const Hero = ({ strings }) => {
                 x="48"
                 y="5"
                 fill={
-                  theme === "light"
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(0,0,0, 0.3)"
+                  theme === 'light'
+                    ? 'rgba(255,255,255,0.3)'
+                    : 'rgba(0,0,0, 0.3)'
                 }
               />
               <use
                 xlinkHref="#gentle-wave"
                 x="48"
                 y="7"
-                fill={theme === "light" ? "#fafafa" : "#303030"}
+                fill={theme === 'light' ? '#fafafa' : '#303030'}
               />
             </PreviewParallax>
           </PreviewWave>
         </HeroOverlay>
       </HeroImage>
     </>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

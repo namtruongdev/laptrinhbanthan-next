@@ -1,5 +1,5 @@
-import React, { useContext } from "react"
-import { ThemeContext } from "../layout"
+import React, { useContext } from 'react';
+import { ThemeContext } from '../layout';
 import {
   HeroContainer,
   IconMouse,
@@ -8,28 +8,26 @@ import {
   HeroContainerLight,
   IconMouseLight,
   IconMouseDark,
-} from "./styles"
+} from './styles';
 
 const handleClick = () => {
-  const anchor = document.querySelector("#main")
+  const anchor = document.querySelector('#main');
 
   if (anchor) {
-    anchor.scrollIntoView({ behavior: "smooth", block: "start" })
+    anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-}
+};
 
 const HeroScroll = () => {
-  const theme = useContext(ThemeContext)
+  const theme = useContext(ThemeContext);
 
   return (
-    <HeroContainer
-      css={theme === "light" ? HeroContainerLight : HeroContainerDark}
-    >
+    <HeroContainer theme={theme}>
       <ButtonScroll onClick={handleClick}>
-        <IconMouse css={theme === "light" ? IconMouseLight : IconMouseDark} />
+        <IconMouse css={theme === 'light' ? IconMouseLight : IconMouseDark} />
       </ButtonScroll>
     </HeroContainer>
-  )
-}
+  );
+};
 
-export default HeroScroll
+export default HeroScroll;

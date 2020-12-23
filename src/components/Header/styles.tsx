@@ -1,28 +1,29 @@
-import styled from "@emotion/styled"
-import { css } from "@emotion/core"
+import styled from 'styled-components';
+
+import { Container, Typography } from '@material-ui/core';
 
 // Navigation
-export const NavContainer = css`
+export const NavContainer = styled(Container)`
   height: 60px;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 99;
-`
+`;
 export const NavFlex = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`
+`;
 export const NavLi = styled.li`
   display: inline-block;
   list-style: none;
-`
+`;
 
-export const NavLink = css`
+export const NavLink = styled.a`
   color: rgba(255, 255, 255, 0.87);
   text-decoration: none;
   font-size: 1.125rem;
@@ -34,12 +35,12 @@ export const NavLink = css`
     color: rgba(255, 255, 255, 0.5);
     transition: all ease-in-out 0.3s;
   }
-`
+`;
 
 // Hero
 
 export const HeroImage = styled.div`
-  background-image: url(https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg);
+  background-image: url('https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg');
   background-size: cover;
   z-index: 40;
   height: 90vh;
@@ -49,8 +50,8 @@ export const HeroImage = styled.div`
   align-items: center;
   object-fit: cover;
   width: 100%;
-`
-export const SiteName = css`
+`;
+export const SiteName = styled(Typography)`
   color: rgba(255, 255, 255, 0.87);
   pointer-events: none;
   white-space: nowrap;
@@ -87,7 +88,7 @@ export const SiteName = css`
       font-size: 1.4rem;
     }
   }
-`
+`;
 // export const HeroVideo = styled.span`
 //   background-image: url(https://res.cloudinary.com/alerthumg/image/upload/v1596350402/laptrinhbanthan/images/poster_gsrl5q.jpg);
 //   background-size: cover;
@@ -106,7 +107,7 @@ export const HeroOverlay = styled.div`
   left: 0;
   right: 0;
   z-index: 50;
-`
+`;
 export const PreviewWave = styled.svg`
   position: relative;
   width: 100%;
@@ -121,7 +122,7 @@ export const PreviewWave = styled.svg`
       min-height: 40px;
     }
   }
-`
+`;
 
 export const PreviewParallax = styled.g`
   & > use {
@@ -146,7 +147,7 @@ export const PreviewParallax = styled.g`
     animation-delay: -5s;
     animation-duration: 20s;
   }
-`
+`;
 
 // Hero scroll
 
@@ -156,26 +157,28 @@ export const HeroContainer = styled.div`
   justify-content: center;
   align-items: center;
   transition: 0.2s all ease;
-`
-export const HeroContainerLight = css`
-  background: #fafafa;
-`
-export const HeroContainerDark = css`
-  background: #303030;
-`
+  background: ${(props) => (props.theme === 'dark' ? '#303030' : '#fafafa')};
+`;
 
 export const IconMouse = styled.i`
   display: block;
   width: 25px;
   height: 40px;
-
+  border: ${(props) =>
+    props.theme === 'dark'
+      ? '2px solid rgba(255, 255, 255, 0.87)'
+      : ' 2px solid rgba(0, 0, 0, 0.87)'};
   border-radius: 25px;
   position: relative;
 
   &:before {
     position: absolute;
+    background: ${(props) =>
+      props.theme === 'dark'
+        ? 'rgba(255, 255, 255, 0.87)'
+        : ' rgba(0, 0, 0, 0.87)'};
     left: 50%;
-    content: "";
+    content: '';
     width: 6px;
     height: 6px;
     margin-left: -3.5px;
@@ -185,23 +188,11 @@ export const IconMouse = styled.i`
     animation-iteration-count: infinite;
     animation-name: scroll;
   }
-`
-export const IconMouseLight = css`
-  border: 2px solid rgba(0, 0, 0, 0.87);
-  &:before {
-    background: rgba(0, 0, 0, 0.87);
-  }
-`
-export const IconMouseDark = css`
-  border: 2px solid rgba(255, 255, 255, 0.87);
-  &:before {
-    background: rgba(255, 255, 255, 0.87);
-  }
-`
+`;
 
 export const ButtonScroll = styled.button`
   background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-`
+`;

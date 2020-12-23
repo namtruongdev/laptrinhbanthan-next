@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import smoothscroll from 'smoothscroll-polyfill';
@@ -46,43 +46,36 @@ const ScrollTop = ({ children }: AppProps): ReactElement => {
     threshold: 100,
   });
 
-  const handleScroll = (): void => {
-    console.log('da chay vao day');
-    if (typeof window !== `undefined`) {
-      if (!trigger) {
-        const iconX = document.querySelector<HTMLElement>('.menu button');
-        const iconMenu = document.querySelector<HTMLElement>('#menu');
-        const iconToTop = document.querySelector<HTMLElement>('#to-top');
-        const iconSwitchMode = document.querySelector<HTMLElement>(
-          '#switch-mode'
-        );
+  useEffect(() => {
+    if (!trigger) {
+      const iconX = document.querySelector<HTMLElement>('.menu button');
+      const iconMenu = document.querySelector<HTMLElement>('#menu');
+      const iconToTop = document.querySelector<HTMLElement>('#to-top');
+      const iconSwitchMode = document.querySelector<HTMLElement>(
+        '#switch-mode'
+      );
 
-        if (iconX) {
-          iconX.classList.add('reseted');
-          iconX.style.transform = 'rotate(0deg)';
-          iconMenu.style.transform = 'translateY(0px)';
-          iconMenu.style.transform = 'scale(0.1)';
-          iconToTop.style.transform = 'translateY(0px)';
-          iconToTop.style.transform = 'scale(0.1)';
-          iconSwitchMode.style.transform = 'translateY(0px)';
-          iconSwitchMode.style.transform = 'scale(0.1)';
-          setTimeout(() => {
-            iconMenu.style.visibility = 'hidden';
-            iconToTop.style.visibility = 'hidden';
-            iconSwitchMode.style.visibility = 'hidden';
-          }, 200);
-        }
+      if (iconX && iconMenu && iconSwitchMode) {
+        iconX.classList.add('reseted');
+        iconX.style.transform = 'rotate(0deg)';
+        iconMenu.style.transform = 'translateY(0px)';
+        iconMenu.style.transform = 'scale(0.1)';
+        iconToTop.style.transform = 'translateY(0px)';
+        iconToTop.style.transform = 'scale(0.1)';
+        iconSwitchMode.style.transform = 'translateY(0px)';
+        iconSwitchMode.style.transform = 'scale(0.1)';
+        setTimeout(() => {
+          iconMenu.style.visibility = 'hidden';
+          iconToTop.style.visibility = 'hidden';
+          iconSwitchMode.style.visibility = 'hidden';
+        }, 200);
       }
     }
-  };
+  }, [trigger]);
 
   return (
     <Zoom in={trigger}>
-      <Options
-        role="presentation"
-        className="menu"
-        onScroll={() => console.log('nam an shit')}
-      >
+      <Options role="presentation" className="menu">
         {children}
       </Options>
     </Zoom>
@@ -139,11 +132,12 @@ const BackTop = (props: BackTopProps): ReactElement => {
     }
   };
 
-  const handleToTopClick = () => {
-    const anchor = document.querySelector<HTMLElement>('#main');
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const handleToTopClick = (): void => {
+    if (typeof window !== undefined) {
+      const anchor = document.querySelector<HTMLElement>('#main');
+      if (anchor) {
+        anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
