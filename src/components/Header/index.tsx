@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 
 import Hero from './Hero';
-import HeroScroll from './hero-scroll';
-import Nav from './nav';
+import HeroScroll from './Hero-scroll';
+import Nav from './Nav';
 
 const Header = ({ strings }): ReactElement => {
   return (

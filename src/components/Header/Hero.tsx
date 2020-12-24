@@ -9,7 +9,7 @@ import {
 
 import 'react-typed/dist/animatedCursor.css';
 
-import { ThemeContext } from '../layout';
+import { ThemeContext } from '../../context/ThemeContext';
 import Typed from 'react-typed';
 
 // const poster =

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-import { Container, Typography } from '@material-ui/core';
+import { Container } from '@material-ui/core';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import { ComponentType } from 'react';
 
 // Navigation
 export const NavContainer = styled(Container)`
@@ -51,7 +53,7 @@ export const HeroImage = styled.div`
   object-fit: cover;
   width: 100%;
 `;
-export const SiteName = styled(Typography)`
+export const SiteName = styled(({ ...props }) => <Typography {...props} />)`
   color: rgba(255, 255, 255, 0.87);
   pointer-events: none;
   white-space: nowrap;

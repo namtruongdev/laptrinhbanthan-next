@@ -1,42 +1,41 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState } from 'react';
 
-import { SearchIcon, useStyles, quering, SearchContainer } from "./styles"
+import { SearchIcon, useStyles, quering, SearchContainer } from './styles';
 import {
   InstantSearch,
   connectStateResults,
   Configure,
-} from "react-instantsearch-dom"
-import algoliasearch from "algoliasearch/lite"
+} from 'react-instantsearch-dom';
+import algoliasearch from 'algoliasearch/lite';
 
-import Popper from "@material-ui/core/Popper"
-import SearchRoundedIcon from "@material-ui/icons/SearchRounded"
-import Paper from "@material-ui/core/Paper"
-import Typography from "@material-ui/core/Typography"
-import ClickAwayListener from "@material-ui/core/ClickAwayListener"
-import Input from "./input"
-import SearchResult from "./SearchResult"
+import Popper from '@material-ui/core/Popper';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Input from './input';
+import SearchResult from './SearchResult';
 
 const Search = () => {
-  const anchorRef = useRef(null)
-  const [arrowRef, setArrowRef] = useState(null)
-  const [open, setOpen] = useState(false)
+  const anchorRef = useRef(null);
+  const [arrowRef, setArrowRef] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY
-  )
+  );
 
   const handleClickButton = () => {
-    setOpen(prevOpen => !prevOpen)
-  }
+    setOpen((prevOpen) => !prevOpen);
+  };
 
   const handleClickAway = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
-  const id = open ? "scroll-playground" : null
+  const id = open ? 'scroll-playground' : null;
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   const Results = connectStateResults(({ searchState, children }) =>
     searchState && searchState.query ? (
@@ -52,19 +51,18 @@ const Search = () => {
         {children}
       </div>
     ) : (
-      ""
+      ''
     )
-  )
-  const searchIndices = [{ name: `Posts`, title: `Posts` }]
+  );
+  const searchIndices = [{ name: `Posts`, title: `Posts` }];
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <SearchContainer>
-        <SearchRoundedIcon
+        <SearchIcon
           ref={anchorRef}
           onClick={handleClickButton}
           aria-describedby={id}
-          css={SearchIcon}
         />
 
         <Popper
@@ -80,7 +78,7 @@ const Search = () => {
             },
             preventOverflow: {
               enabled: true,
-              boundariesElement: "scrollParent",
+              boundariesElement: 'scrollParent',
             },
             arrow: {
               enabled: true,
@@ -101,7 +99,7 @@ const Search = () => {
         </Popper>
       </SearchContainer>
     </ClickAwayListener>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;
